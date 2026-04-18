@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title> 노댕제작소 : 우리 안심 키링</title>
+  <title> 노댕제작소 : 우리 아이 안심 키링</title>
   <meta name="theme-color" content="#f6efe6" />
   <style>
     :root {
@@ -573,7 +573,7 @@ ${data.momName}: ${formatPhone(data.momPhone)}
 ${data.dadName}: ${formatPhone(data.dadPhone)}`;
     }
 
-    function formatPhone(콜) {
+    function formatPhone(phone) {
       const onlyNum = phone.replace(/[^0-9]/g, "");
       if (onlyNum.length === 11) {
         return onlyNum.replace(/(\d{3})(\d{4})(\d{4})/, "$1-$2-$3");
