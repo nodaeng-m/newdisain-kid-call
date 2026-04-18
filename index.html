@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title> 노댕제작소 : 우리 안심 키링</title>
+  <meta name="theme-color" content="#f6efe6" />
+  <style>
+    :root {
+      --bg: #f8f4ee;
+      --card: rgba(255, 255, 255, 0.78);
+      --line: rgba(80, 60, 40, 0.10);
+      --text: #34281f;
+      --sub: #7a695d;
+      --point: #5b4636;
+      --point-soft: #efe5d8;
+      --accent: #d8bfa7;
+      --accent-2: #cfae8f;
+      --danger: #8c5c4a;
+      --shadow: 0 14px 40px rgba(78, 55, 35, 0.10);
+      --radius-xl: 28px;
+      --radius-lg: 20px;
+      --radius-md: 16px;
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", sans-serif;
+      background:
+        radial-gradient(circle at top left, #fff8f1 0%, transparent 32%),
+        radial-gradient(circle at bottom right, #f1e2d3 0%, transparent 28%),
+        linear-gradient(180deg, #f8f4ee 0%, #f4ede4 100%);
+      color: var(--text);
+      min-height: 100%;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      padding: 20px 16px 28px;
+    }
+
+    .wrap {
+      width: 100%;
+      max-width: 460px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .card {
+      background: var(--card);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .hero {
+      position: relative;
+      padding: 26px 22px 22px;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      right: -28px;
+      top: -28px;
+      background: radial-gradient(circle, rgba(216,191,167,0.45) 0%, rgba(216,191,167,0.06) 65%, transparent 75%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .brand-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #fffaf5;
+      border: 1px solid rgba(91, 70, 54, 0.08);
+      color: var(--point);
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      margin-bottom: 14px;
+    }
+
+    .duck {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: linear-gradient(180deg, #f2d6b9 0%, #e5c2a0 100%);
+      display: inline-block;
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .duck::before,
+    .duck::after {
+      content: "";
+      position: absolute;
+      background: #5b4636;
+      border-radius: 999px;
+    }
+
+    .duck::before {
+      width: 2px;
+      height: 2px;
+      left: 5px;
+      top: 7px;
+      box-shadow: 6px 0 0 #5b4636;
+    }
+
+    .duck::after {
+      width: 8px;
+      height: 4px;
+      background: #d89b62;
+      left: 5px;
+      bottom: 4px;
+      border-radius: 6px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 28px;
+      line-height: 1.25;
+      letter-spacing: -0.03em;
+    }
+
+    .hero p {
+      margin: 10px 0 0;
+      color: var(--sub);
+      line-height: 1.65;
+      font-size: 14px;
+    }
+
+    .child-card {
+      padding: 20px;
+    }
+
+    .section-title {
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--point);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .section-title .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent-2);
+      flex-shrink: 0;
+    }
+
+    .child-box {
+      background: linear-gradient(180deg, rgba(255,255,255,0.85) 0%, rgba(247,242,236,0.85) 100%);
+      border: 1px solid rgba(91, 70, 54, 0.08);
+      border-radius: 22px;
+      padding: 18px;
+      display: grid;
+      grid-template-columns: 76px 1fr;
+      gap: 14px;
+      align-items: center;
+    }
+
+.avatar {
+  width: 76px;
+  height: 76px;
+  border-radius: 24px;
+  overflow: hidden;
+  position: relative;
+  background: #f3e6d8;
+  box-shadow: inset 0 0 0 1px rgba(91, 70, 54, 0.05);
+}
+
+.avatar::before,
+.avatar::after {
+  display: none;
+}
+
+.avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+    .child-name {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 6px;
+    }
+
+    .child-sub {
+      color: var(--sub);
+      font-size: 13px;
+      line-height: 1.6;
+      margin-bottom: 10px;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      padding: 7px 11px;
+      border-radius: 999px;
+      background: #fffaf5;
+      border: 1px solid rgba(91, 70, 54, 0.08);
+      color: var(--point);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .button-card {
+      padding: 20px;
+    }
+
+    .button-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    button, a.action-btn {
+      appearance: none;
+      border: none;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 58px;
+      padding: 15px 14px;
+      border-radius: 18px;
+      font-size: 15px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: transform .12s ease, box-shadow .12s ease, opacity .12s ease;
+    }
+
+    button:active, a.action-btn:active {
+      transform: scale(0.985);
+    }
+
+    .btn-main {
+      background: var(--point);
+      color: #fff;
+      box-shadow: 0 10px 22px rgba(91, 70, 54, 0.20);
+    }
+
+    .btn-soft {
+      background: #fffaf5;
+      color: var(--point);
+      border: 1px solid rgba(91, 70, 54, 0.08);
+    }
+
+    .btn-wide {
+      grid-column: 1 / -1;
+    }
+
+    .status-card {
+      padding: 18px 18px 16px;
+    }
+
+    .status-box {
+      background: #fffaf5;
+      border: 1px solid rgba(91, 70, 54, 0.08);
+      border-radius: 18px;
+      padding: 14px 14px;
+      color: var(--sub);
+      font-size: 13px;
+      line-height: 1.65;
+      white-space: pre-line;
+      min-height: 70px;
+    }
+
+    .guardian-card {
+      padding: 20px;
+    }
+
+    .info-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .info-item {
+      display: grid;
+      grid-template-columns: 90px 1fr;
+      gap: 12px;
+      align-items: start;
+      padding: 12px 0;
+      border-bottom: 1px dashed rgba(91, 70, 54, 0.10);
+    }
+
+    .info-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .label {
+      color: var(--sub);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .value {
+      color: var(--text);
+      font-size: 14px;
+      line-height: 1.6;
+      font-weight: 700;
+      word-break: keep-all;
+    }
+
+    .footer-note {
+      text-align: center;
+      color: var(--sub);
+      font-size: 12px;
+      line-height: 1.6;
+      padding: 4px 8px 0;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    @media (max-width: 380px) {
+      h1 {
+        font-size: 25px;
+      }
+
+      .child-box {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .avatar {
+        margin: 0 auto;
+      }
+
+      .button-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .info-item {
+        grid-template-columns: 1fr;
+        gap: 4px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="card hero">
+      <div class="brand-badge">
+        <span class="duck"></span>
+        노댕제작소 : 우리 아이 안심 키링
+      </div>
+      <h1>보호자와 빠르게 연결할 수 있어요</h1>
+      <p>
+        아이를 보호 중이시라면 아래 버튼을 눌러주세요.<br />
+        보호자에게 바로 연락하거나, 현재 위치를 보낼 수 있어요.
+      </p>
+    </section>
+
+    <section class="card child-card">
+      <div class="section-title">
+        <span class="dot"></span>
+        아이 정보
+      </div>
+
+    <div class="child-box">
+  <div class="avatar">
+    <img src="노하준.jpg" alt="아이 사진" class="avatar-img">
+  </div>
+
+  <div>
+    <div class="child-name" id="childName">노하준</div>
+    <div class="child-sub" id="childInfoText">
+      낯선 상황에서는 놀라거나 말을 못할 수 있어요.<br />
+      보호자에게 바로 연락 부탁드립니다.
+    </div>
+
+    <div class="chips">
+      <span class="chip" id="childAge">3세</span>
+      <span class="chip" id="childGender">남아</span>
+      <span class="chip" id="childNote">도움이 필요해요</span>
+    </div>
+  </div>
+</div>
+
+    </section>
+
+    <section class="card button-card">
+      <div class="section-title">
+        <span class="dot"></span>
+        빠른 연결
+      </div>
+
+      <div class="button-grid">
+        <a class="action-btn btn-main" id="callMomBtn" href="tel:01012345678">엄마에게 전화</a>
+        <a class="action-btn btn-soft" id="callDadBtn" href="tel:01087654321">아빠에게 전화</a>
+
+        <button class="btn-main btn-wide" onclick="sendLocationSMS()">현재 위치 보내기</button>
+        <button class="btn-soft btn-wide" onclick="toggleGuardianInfo()">보호자 정보 보기</button>
+      </div>
+    </section>
+
+    <section class="card status-card">
+      <div class="section-title">
+        <span class="dot"></span>
+        안내
+      </div>
+      <div id="status" class="status-box"> 
+버튼을 누르면 보호자에게 빠르게 연결할 수 있어요.
+위치 전송은 휴대폰의 위치 권한 허용이 필요해요.
+      </div>
+    </section>
+
+    <section class="card guardian-card hidden" id="guardianInfoSection">
+      <div class="section-title">
+        <span class="dot"></span>
+        보호자 정보
+      </div>
+
+      <div class="info-list">
+        <div class="info-item">
+          <div class="label">엄마</div>
+          <div class="value" id="momInfo">이영은 / 010-8915-7831</div>
+        </div>
+
+        <div class="info-item">
+          <div class="label">아빠</div>
+          <div class="value" id="dadInfo">노우석 / 010-9990-1733</div>
+        </div>
+
+        <div class="info-item">
+          <div class="label">추가 안내</div>
+          <div class="value" id="extraInfo">
+            아이를 보호 중이시라면 현재 위치를 함께 전달해 주세요.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer-note">
+      노댕맘 키링 · 보호자 연락용 안내 페이지
+    </div>
+  </div>
+
+  <script>
+    /* =========================
+       1. 여기만 수정해서 사용하세요
+    ========================== */
+
+    const data = {
+      childName: "노하준",
+      childAge: "3세",
+      childGender: "남아",
+      childNote: "도움이 필요해요",
+      childInfoText: "낯선 상황에서는 놀라거나 말을 못할 수 있어요.\n보호자에게 바로 연락 부탁드립니다.",
+
+      momName: "엄마",
+      momPhone: "01089157831",
+      dadName: "아빠",
+      dadPhone: "01099901733",
+
+      momInfo: "이영은 / 010-8915-7831",
+      dadInfo: "노우석 / 010-9990-1733",
+
+      extraInfo: "아이가 길을 잃었거나 보호가 필요한 상황이라면, 위치 보내기 버튼을 눌러 보호자에게 현재 위치를 전달해 주세요."
+    };
+
+    /* =========================
+       2. 화면 반영
+    ========================== */
+
+    document.getElementById("childName").textContent = data.childName;
+    document.getElementById("childAge").textContent = data.childAge;
+    document.getElementById("childGender").textContent = data.childGender;
+    document.getElementById("childNote").textContent = data.childNote;
+    document.getElementById("childInfoText").innerHTML = data.childInfoText.replace(/\n/g, "<br>");
+
+    document.getElementById("momInfo").textContent = data.momInfo;
+    document.getElementById("dadInfo").textContent = data.dadInfo;
+    document.getElementById("extraInfo").textContent = data.extraInfo;
+
+    document.getElementById("callMomBtn").textContent = `${data.momName}에게 전화`;
+    document.getElementById("callDadBtn").textContent = `${data.dadName}에게 전화`;
+
+    document.getElementById("callMomBtn").href = `tel:${data.momPhone}`;
+    document.getElementById("callDadBtn").href = `tel:${data.dadPhone}`;
+
+    /* =========================
+       3. 기능
+    ========================== */
+
+    const statusBox = document.getElementById("status");
+    const guardianInfoSection = document.getElementById("guardianInfoSection");
+
+    function setStatus(message) {
+      statusBox.textContent = message;
+    }
+
+    function toggleGuardianInfo() {
+      guardianInfoSection.classList.toggle("hidden");
+
+      if (guardianInfoSection.classList.contains("hidden")) {
+        setStatus("보호자 정보 창을 닫았어요.");
+      } else {
+        setStatus("보호자 정보를 확인할 수 있어요.");
+        guardianInfoSection.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }
+
+    function getCurrentPositionPromise() {
+      return new Promise((resolve, reject) => {
+        if (!navigator.geolocation) {
+          reject(new Error("이 기기에서는 위치 기능을 지원하지 않아요."));
+          return;
+        }
+
+        navigator.geolocation.getCurrentPosition(
+          (position) => resolve(position),
+          (error) => {
+            let msg = "위치를 가져오지 못했어요.";
+            if (error.code === 1) msg = "위치 권한이 거부되었어요.";
+            if (error.code === 2) msg = "위치 정보를 확인할 수 없어요.";
+            if (error.code === 3) msg = "위치 요청 시간이 초과되었어요.";
+            reject(new Error(msg));
+          },
+          {
+            enableHighAccuracy: true,
+            timeout: 12000,
+            maximumAge: 0
+          }
+        );
+      });
+    }
+
+    function buildLocationMessage(lat, lng) {
+      const mapLink = `https://maps.google.com/?q=${lat},${lng}`;
+
+      return `[${data.childName} 위치 알림]
+안녕하세요.
+${data.childName}를 보호 중인 분이 현재 위치를 전달합니다.
+
+현재 위치:
+${mapLink}
+
+보호자 연락처
+${data.momName}: ${formatPhone(data.momPhone)}
+${data.dadName}: ${formatPhone(data.dadPhone)}`;
+    }
+
+    function formatPhone(콜) {
+      const onlyNum = phone.replace(/[^0-9]/g, "");
+      if (onlyNum.length === 11) {
+        return onlyNum.replace(/(\d{3})(\d{4})(\d{4})/, "$1-$2-$3");
+      }
+      if (onlyNum.length === 10) {
+        return onlyNum.replace(/(\d{3})(\d{3})(\d{4})/, "$1-$2-$3");
+      }
+      return phone;
+    }
+
+    async function sendLocationSMS() {
+      try {
+        setStatus("현재 위치를 확인하고 있어요...");
+        const position = await getCurrentPositionPromise();
+
+        const lat = position.coords.latitude.toFixed(6);
+        const lng = position.coords.longitude.toFixed(6);
+        const message = buildLocationMessage(lat, lng);
+
+        setStatus("문자앱을 열고 있어요.\n전송 버튼만 눌러 보호자에게 보내주세요.");
+
+        const primaryPhone = data.momPhone || data.dadPhone;
+        const smsUrl = `sms:${primaryPhone}?body=${encodeURIComponent(message)}`;
+        window.location.href = smsUrl;
+      } catch (error) {
+        setStatus(error.message);
+      }
+    }
+  </script>
+</body>
+</html>
