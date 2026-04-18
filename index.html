@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title> 노댕제작소 : 우리 아이 안심 키링</title>
+  <title>노댕제작소 : 우리 안심 키링</title>
   <meta name="theme-color" content="#f6efe6" />
   <style>
     :root {
@@ -13,14 +13,9 @@
       --text: #34281f;
       --sub: #7a695d;
       --point: #5b4636;
-      --point-soft: #efe5d8;
-      --accent: #d8bfa7;
       --accent-2: #cfae8f;
-      --danger: #8c5c4a;
       --shadow: 0 14px 40px rgba(78, 55, 35, 0.10);
       --radius-xl: 28px;
-      --radius-lg: 20px;
-      --radius-md: 16px;
     }
 
     * {
@@ -92,7 +87,6 @@
       padding: 8px 12px;
       font-size: 12px;
       font-weight: 700;
-      letter-spacing: 0.02em;
       margin-bottom: 14px;
     }
 
@@ -145,7 +139,10 @@
       font-size: 14px;
     }
 
-    .child-card {
+    .child-card,
+    .button-card,
+    .guardian-card,
+    .status-card {
       padding: 20px;
     }
 
@@ -178,32 +175,25 @@
       align-items: center;
     }
 
-.avatar {
-  width: 76px;
-  height: 76px;
-  border-radius: 24px;
-  overflow: hidden;
-  position: relative;
-  background: #f3e6d8;
-  box-shadow: inset 0 0 0 1px rgba(91, 70, 54, 0.05);
-}
+    .avatar {
+      width: 76px;
+      height: 76px;
+      border-radius: 24px;
+      overflow: hidden;
+      background: #f3e6d8;
+      box-shadow: inset 0 0 0 1px rgba(91, 70, 54, 0.05);
+    }
 
-.avatar::before,
-.avatar::after {
-  display: none;
-}
-
-.avatar-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
+    .avatar-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
 
     .child-name {
       font-size: 22px;
       font-weight: 800;
-      letter-spacing: -0.02em;
       margin-bottom: 6px;
     }
 
@@ -232,10 +222,6 @@
       font-weight: 700;
     }
 
-    .button-card {
-      padding: 20px;
-    }
-
     .button-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -249,18 +235,12 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
       min-height: 58px;
       padding: 15px 14px;
       border-radius: 18px;
       font-size: 15px;
       font-weight: 800;
       cursor: pointer;
-      transition: transform .12s ease, box-shadow .12s ease, opacity .12s ease;
-    }
-
-    button:active, a.action-btn:active {
-      transform: scale(0.985);
     }
 
     .btn-main {
@@ -279,24 +259,16 @@
       grid-column: 1 / -1;
     }
 
-    .status-card {
-      padding: 18px 18px 16px;
-    }
-
     .status-box {
       background: #fffaf5;
       border: 1px solid rgba(91, 70, 54, 0.08);
       border-radius: 18px;
-      padding: 14px 14px;
+      padding: 14px;
       color: var(--sub);
       font-size: 13px;
       line-height: 1.65;
       white-space: pre-line;
       min-height: 70px;
-    }
-
-    .guardian-card {
-      padding: 20px;
     }
 
     .info-list {
@@ -345,27 +317,11 @@
     }
 
     @media (max-width: 380px) {
-      h1 {
-        font-size: 25px;
-      }
-
-      .child-box {
-        grid-template-columns: 1fr;
-        text-align: center;
-      }
-
-      .avatar {
-        margin: 0 auto;
-      }
-
-      .button-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .info-item {
-        grid-template-columns: 1fr;
-        gap: 4px;
-      }
+      h1 { font-size: 25px; }
+      .child-box { grid-template-columns: 1fr; text-align: center; }
+      .avatar { margin: 0 auto; }
+      .button-grid { grid-template-columns: 1fr; }
+      .info-item { grid-template-columns: 1fr; gap: 4px; }
     }
   </style>
 </head>
@@ -389,26 +345,22 @@
         아이 정보
       </div>
 
-    <div class="child-box">
-  <div class="avatar">
-    <img src="노하준.jpg" alt="아이 사진" class="avatar-img">
-  </div>
+      <div class="child-box">
+        <div class="avatar">
+          <img id="childPhoto" src="" alt="아이 사진" class="avatar-img">
+        </div>
 
-  <div>
-    <div class="child-name" id="childName">노하준</div>
-    <div class="child-sub" id="childInfoText">
-      낯선 상황에서는 놀라거나 말을 못할 수 있어요.<br />
-      보호자에게 바로 연락 부탁드립니다.
-    </div>
+        <div>
+          <div class="child-name" id="childName"></div>
+          <div class="child-sub" id="childInfoText"></div>
 
-    <div class="chips">
-      <span class="chip" id="childAge">3세</span>
-      <span class="chip" id="childGender">남아</span>
-      <span class="chip" id="childNote">도움이 필요해요</span>
-    </div>
-  </div>
-</div>
-
+          <div class="chips">
+            <span class="chip" id="childAge"></span>
+            <span class="chip" id="childGender"></span>
+            <span class="chip" id="childNote"></span>
+          </div>
+        </div>
+      </div>
     </section>
 
     <section class="card button-card">
@@ -418,9 +370,8 @@
       </div>
 
       <div class="button-grid">
-        <a class="action-btn btn-main" id="callMomBtn" href="tel:01012345678">엄마에게 전화</a>
-        <a class="action-btn btn-soft" id="callDadBtn" href="tel:01087654321">아빠에게 전화</a>
-
+        <a class="action-btn btn-main" id="callMomBtn" href="#">엄마에게 전화</a>
+        <a class="action-btn btn-soft" id="callDadBtn" href="#">아빠에게 전화</a>
         <button class="btn-main btn-wide" onclick="sendLocationSMS()">현재 위치 보내기</button>
         <button class="btn-soft btn-wide" onclick="toggleGuardianInfo()">보호자 정보 보기</button>
       </div>
@@ -431,7 +382,7 @@
         <span class="dot"></span>
         안내
       </div>
-      <div id="status" class="status-box"> 
+      <div id="status" class="status-box">
 버튼을 누르면 보호자에게 빠르게 연결할 수 있어요.
 위치 전송은 휴대폰의 위치 권한 허용이 필요해요.
       </div>
@@ -446,19 +397,17 @@
       <div class="info-list">
         <div class="info-item">
           <div class="label">엄마</div>
-          <div class="value" id="momInfo">이영은 / 010-8915-7831</div>
+          <div class="value" id="momInfo"></div>
         </div>
 
         <div class="info-item">
           <div class="label">아빠</div>
-          <div class="value" id="dadInfo">노우석 / 010-9990-1733</div>
+          <div class="value" id="dadInfo"></div>
         </div>
 
         <div class="info-item">
           <div class="label">추가 안내</div>
-          <div class="value" id="extraInfo">
-            아이를 보호 중이시라면 현재 위치를 함께 전달해 주세요.
-          </div>
+          <div class="value" id="extraInfo"></div>
         </div>
       </div>
     </section>
@@ -470,53 +419,63 @@
 
   <script>
     /* =========================
-       1. 여기만 수정해서 사용하세요
+       여기만 수정하면 끝
     ========================== */
+    const PHOTO = "노하준.jpg";
 
-    const data = {
-      childName: "노하준",
-      childAge: "3세",
-      childGender: "남아",
-      childNote: "도움이 필요해요",
-      childInfoText: "낯선 상황에서는 놀라거나 말을 못할 수 있어요.\n보호자에게 바로 연락 부탁드립니다.",
+    const CHILD_NAME = "노하준";
+    const CHILD_AGE = "3세";
+    const CHILD_GENDER = "남아";
+    const CHILD_NOTE = "도움이 필요해요";
+    const CHILD_TEXT = "낯선 상황에서는 놀라거나 말을 못할 수 있어요.\n보호자에게 바로 연락 부탁드립니다.";
 
-      momName: "엄마",
-      momPhone: "01089157831",
-      dadName: "아빠",
-      dadPhone: "01099901733",
+    const MOM_LABEL = "엄마";
+    const MOM_NAME = "이영은";
+    const MOM_PHONE = "01089157831";
 
-      momInfo: "이영은 / 010-8915-7831",
-      dadInfo: "노우석 / 010-9990-1733",
+    const DAD_LABEL = "아빠";
+    const DAD_NAME = "노우석";
+    const DAD_PHONE = "01099901733";
 
-      extraInfo: "아이가 길을 잃었거나 보호가 필요한 상황이라면, 위치 보내기 버튼을 눌러 보호자에게 현재 위치를 전달해 주세요."
-    };
+    const EXTRA_INFO = "아이가 길을 잃었거나 보호가 필요한 상황이라면, 위치 보내기 버튼을 눌러 보호자에게 현재 위치를 전달해 주세요.";
 
     /* =========================
-       2. 화면 반영
+       아래는 수정 안 해도 됨
     ========================== */
+    document.getElementById("childPhoto").src = PHOTO;
+    document.getElementById("childName").textContent = CHILD_NAME;
+    document.getElementById("childAge").textContent = CHILD_AGE;
+    document.getElementById("childGender").textContent = CHILD_GENDER;
+    document.getElementById("childNote").textContent = CHILD_NOTE;
+    document.getElementById("childInfoText").innerHTML = CHILD_TEXT.replace(/\n/g, "<br>");
 
-    document.getElementById("childName").textContent = data.childName;
-    document.getElementById("childAge").textContent = data.childAge;
-    document.getElementById("childGender").textContent = data.childGender;
-    document.getElementById("childNote").textContent = data.childNote;
-    document.getElementById("childInfoText").innerHTML = data.childInfoText.replace(/\n/g, "<br>");
+    document.getElementById("momInfo").textContent = MOM_PHONE
+      ? `${MOM_NAME} / ${formatPhone(MOM_PHONE)}`
+      : "미입력";
 
-    document.getElementById("momInfo").textContent = data.momInfo;
-    document.getElementById("dadInfo").textContent = data.dadInfo;
-    document.getElementById("extraInfo").textContent = data.extraInfo;
+    document.getElementById("dadInfo").textContent = DAD_PHONE
+      ? `${DAD_NAME} / ${formatPhone(DAD_PHONE)}`
+      : "미입력";
 
-    document.getElementById("callMomBtn").textContent = `${data.momName}에게 전화`;
-    document.getElementById("callDadBtn").textContent = `${data.dadName}에게 전화`;
+    document.getElementById("extraInfo").textContent = EXTRA_INFO;
 
-    document.getElementById("callMomBtn").href = `tel:${data.momPhone}`;
-    document.getElementById("callDadBtn").href = `tel:${data.dadPhone}`;
-
-    /* =========================
-       3. 기능
-    ========================== */
+    document.getElementById("callMomBtn").textContent = `${MOM_LABEL}에게 전화`;
+    document.getElementById("callDadBtn").textContent = `${DAD_LABEL}에게 전화`;
+    document.getElementById("callMomBtn").href = MOM_PHONE ? `tel:${MOM_PHONE}` : "#";
+    document.getElementById("callDadBtn").href = DAD_PHONE ? `tel:${DAD_PHONE}` : "#";
 
     const statusBox = document.getElementById("status");
     const guardianInfoSection = document.getElementById("guardianInfoSection");
+    const callMomBtn = document.getElementById("callMomBtn");
+    const callDadBtn = document.getElementById("callDadBtn");
+
+    if (!MOM_PHONE) {
+      callMomBtn.style.display = "none";
+    }
+
+    if (!DAD_PHONE) {
+      callDadBtn.style.display = "none";
+    }
 
     function setStatus(message) {
       statusBox.textContent = message;
@@ -549,39 +508,42 @@
             if (error.code === 3) msg = "위치 요청 시간이 초과되었어요.";
             reject(new Error(msg));
           },
-          {
-            enableHighAccuracy: true,
-            timeout: 12000,
-            maximumAge: 0
-          }
+          { enableHighAccuracy: true, timeout: 12000, maximumAge: 0 }
         );
       });
     }
 
+    function formatPhone(phone) {
+      const onlyNum = String(phone || "").replace(/[^0-9]/g, "");
+      if (onlyNum.length === 11) return onlyNum.replace(/(\d{3})(\d{4})(\d{4})/, "$1-$2-$3");
+      if (onlyNum.length === 10) return onlyNum.replace(/(\d{2,3})(\d{3,4})(\d{4})/, "$1-$2-$3");
+      return phone || "";
+    }
+
+    function getSmsRecipients(separator = ",") {
+      return [MOM_PHONE, DAD_PHONE]
+        .map(phone => String(phone || "").replace(/[^0-9]/g, ""))
+        .filter(Boolean)
+        .filter((phone, index, arr) => arr.indexOf(phone) === index)
+        .join(separator);
+    }
+
     function buildLocationMessage(lat, lng) {
       const mapLink = `https://maps.google.com/?q=${lat},${lng}`;
+      let contacts = "";
 
-      return `[${data.childName} 위치 알림]
+      if (MOM_PHONE) contacts += `${MOM_LABEL}: ${formatPhone(MOM_PHONE)}\n`;
+      if (DAD_PHONE) contacts += `${DAD_LABEL}: ${formatPhone(DAD_PHONE)}`;
+
+      return `[${CHILD_NAME} 위치 알림]
 안녕하세요.
-${data.childName}를 보호 중인 분이 현재 위치를 전달합니다.
+${CHILD_NAME}를 보호 중인 분이 현재 위치를 전달합니다.
 
 현재 위치:
 ${mapLink}
 
 보호자 연락처
-${data.momName}: ${formatPhone(data.momPhone)}
-${data.dadName}: ${formatPhone(data.dadPhone)}`;
-    }
-
-    function formatPhone(phone) {
-      const onlyNum = phone.replace(/[^0-9]/g, "");
-      if (onlyNum.length === 11) {
-        return onlyNum.replace(/(\d{3})(\d{4})(\d{4})/, "$1-$2-$3");
-      }
-      if (onlyNum.length === 10) {
-        return onlyNum.replace(/(\d{3})(\d{3})(\d{4})/, "$1-$2-$3");
-      }
-      return phone;
+${contacts.trim()}`;
     }
 
     async function sendLocationSMS() {
@@ -593,13 +555,25 @@ ${data.dadName}: ${formatPhone(data.dadPhone)}`;
         const lng = position.coords.longitude.toFixed(6);
         const message = buildLocationMessage(lat, lng);
 
+        let recipients = getSmsRecipients(",");
+        if (!recipients) {
+          setStatus("보호자 연락처가 없어요.");
+          return;
+        }
+
         setStatus("문자앱을 열고 있어요.\n전송 버튼만 눌러 보호자에게 보내주세요.");
 
-        const primaryPhone = data.momPhone || data.dadPhone;
-        const smsUrl = `sms:${primaryPhone}?body=${encodeURIComponent(message)}`;
-        window.location.href = smsUrl;
+        let smsUrl = `sms:${recipients}?body=${encodeURIComponent(message)}`;
+
+        try {
+          window.location.href = smsUrl;
+        } catch (e) {
+          recipients = getSmsRecipients(";");
+          smsUrl = `sms:${recipients}?body=${encodeURIComponent(message)}`;
+          window.location.href = smsUrl;
+        }
       } catch (error) {
-        setStatus(error.message);
+        setStatus(error.message || "오류가 발생했어요.");
       }
     }
   </script>
